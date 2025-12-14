@@ -1,0 +1,14 @@
+{
+  "training_data": {
+    "model": "code-review-assistant",
+    "training_samples": 100,
+    "epochs": 3,
+    "start_time": "2025-12-14T13:13:00.199270"
+  },
+  "metrics": {
+    "accuracy": 0.89,
+    "loss": 0.23,
+    "training_time": "45 minutes",
+    "status": "completed"
+  }
+}

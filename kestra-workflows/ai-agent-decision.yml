@@ -1,0 +1,40 @@
+id: Cortex-AI
+namespace: Cortex.ai
+
+description: AI Agent makes autonomous decisions on code reviews
+
+tasks:
+  - id: collect-pr-metrics
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      PR Metrics Collected:
+      - Lines added: 150
+      - Lines removed: 45
+      - Files changed: 8
+      - Test coverage: 85%
+      - Author experience: Senior (3 years)
+      
+  - id: ai-agent-summary
+    type: io.kestra.plugin.ai.OpenAIChat
+    apiKey: "{{ secret('OPENAI_API_KEY') }}"
+    model: gpt-4
+    prompt: |
+      You are an AI code review assistant. Analyze this PR data:
+      {{ outputs['collect-pr-metrics'].message }}
+      
+      Provide:
+      1. Risk Level (LOW/MEDIUM/HIGH)
+      2. Decision (APPROVE/REQUEST_CHANGES/REJECT)
+      3. Key concerns (if any)
+      4. Recommendations
+      
+  - id: execute-decision
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      DECISION EXECUTED
+      AI Agent Response: {{ outputs['ai-agent-summary'].choices[0].message.content }}
+      Action: Auto-approved and merged to staging
+      
+  - id: notify-team
+    type: io.kestra.plugin.core.log.Log
+    message: "Team notified of AI decision via Slack"

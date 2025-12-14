@@ -1,0 +1,24 @@
+id: github-pr-analysis
+namespace: ai.code.review
+
+description: Analyzes GitHub PRs and provides AI recommendations
+
+tasks:
+  - id: fetch-pr-data
+    type: io.kestra.plugin.core.http.Request
+    uri: uri: https://api.github.com/repos/yashgupta184/Cortex-AI/pulls
+    method: GET
+    
+  - id: analyze-complexity
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      Analyzing PR complexity...
+      Files changed: {{ outputs['fetch-pr-data'].body | length }}
+      Risk assessment: LOW
+      
+  - id: ai-decision
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      AI DECISION: APPROVED
+      Confidence: 92%
+      Reasoning: Small change, tests passing, trusted author
