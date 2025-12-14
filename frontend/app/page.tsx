@@ -74,6 +74,19 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-6 py-8">
         <div className="space-y-10">
+
+          {/* Interactive CLI */}
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Interactive CLI</h2>
+            <CliTerminal />
+          </section>
+          
+          {/* GitHub Integration */}
+          <section>
+            <h2 className="text-2xl font-bold mb-4">GitHub Integration</h2>
+            <GitHubIntegration />
+          </section>
+
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => {
@@ -161,18 +174,6 @@ export default function Dashboard() {
           <section>
             <h2 className="text-2xl font-bold mb-4">Activity Feed</h2>
             <ActivityFeed />
-          </section>
-
-          {/* GitHub Integration */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">GitHub Integration</h2>
-            <GitHubIntegration />
-          </section>
-
-          {/* Interactive CLI */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">Interactive CLI</h2>
-            <CliTerminal />
           </section>
         </div>
       </main>
